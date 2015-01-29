@@ -18,7 +18,7 @@ public class Main
     public static final int CARD_WIDTH = 73;                    
     public static final int PANEL_HEIGHT = (2*PERIMETER_BEVEL) + (4*CARD_HEIGHT) + (3*INTERIOR_BEVEL);
     public static final int PANEL_WIDTH = (2*PERIMETER_BEVEL) + (14*CARD_WIDTH) + (13*INTERIOR_BEVEL);
-    public static final String   BACKGROUND_COLOR = "#32CD32";  //window background color [hex] -SJO swapped to lime green
+    public static final String   BACKGROUND_COLOR = "#76ee00";  //window background color [hex] -SJO swapped to lime green
     public static final String   CARD_FOLDER = "cardImages";    //default folder containing images
     public static final String[] RANKS = {  "gray","gray","gray","gray","ace","two","three","four","five","six","seven",
                                             "eight","nine","ten","jack","queen","king"
@@ -157,8 +157,8 @@ public class Main
             }
         };
         panel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        panel.setBackground(Color.decode(BACKGROUND_COLOR));
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        window.setBackground(Color.decode(BACKGROUND_COLOR));
         window.add(panel);
         window.setVisible(true);    
         window.pack();
