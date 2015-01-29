@@ -6,7 +6,9 @@ import javax.swing.*;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
