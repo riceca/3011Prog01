@@ -18,7 +18,7 @@ public class Main
     public static final int CARD_WIDTH = 73;                    
     public static final int PANEL_HEIGHT = (2*PERIMETER_BEVEL) + (4*CARD_HEIGHT) + (3*INTERIOR_BEVEL);
     public static final int PANEL_WIDTH = (2*PERIMETER_BEVEL) + (14*CARD_WIDTH) + (13*INTERIOR_BEVEL);
-    public static final String   BACKGROUND_COLOR = "#64C866";  //window background color [hex]
+    public static final String   BACKGROUND_COLOR = "#32CD32";  //window background color [hex] -SJO swapped to lime green
     public static final String   CARD_FOLDER = "cardImages";    //default folder containing images
     public static final String[] RANKS = {  "gray","gray","gray","gray","ace","two","three","four","five","six","seven",
                                             "eight","nine","ten","jack","queen","king"
@@ -59,7 +59,7 @@ public class Main
     }
 
 
-    /**
+    /** - SJO
      * orderedCardName takes the info based on the current state of the deck and returns the name of
      * the next unused card to lay out on the canvas
      * @param counter - the current spot in the cards
@@ -75,10 +75,10 @@ public class Main
         }
 
         String[] suit = new String[4];
-        suit[0] = "Spades";
-        suit[1] = "Hearts";
-        suit[2] = "Diamonds";
-        suit[3] = "Clubs";
+        suit[0] = "Clubs";
+        suit[1] = "Diamonds";
+        suit[2] = "Hearts";
+        suit[3] = "Spades";
 
         String[] number = new String[14];
         number[1] = "ace";
@@ -117,7 +117,7 @@ public class Main
                 File[] files = new File(CARD_FOLDER).listFiles();        //ranks appear in the same suit order in
                 int counter = 0;                                         //the filesystem so suits will automatically
                 String[] cards;											 //be in order when printing in groups of four
-                ArrayList<String> used = new ArrayList<String>();		 //cards.
+                ArrayList<String> used = new ArrayList<String>();		     //cards.
                 //Allocates memory for all cards
                 cards = new String[56];
                 for(String rank : RANKS) {                               
@@ -138,14 +138,14 @@ public class Main
                 // reset counter because we want to start placing them at 0, not 56
                 counter = 0;
                 int type = 0;
-                // for each card name in the array, pull one out (using randCardName)
+                // for each card collection, pull one out
                 // and print it to the screen.
                 while (type < 4)
                 {
                 	new ImageIcon(orderedCardName(counter, type)).paintIcon(this, g,
-                			PERIMETER_BEVEL + counter * (CARD_WIDTH + INTERIOR_BEVEL),			//counter/4 keeps track of the correct column
+                			PERIMETER_BEVEL + counter * (CARD_WIDTH + INTERIOR_BEVEL),			    //counter/4 keeps track of the correct column
                   			PERIMETER_BEVEL + (3-(type%4)) *(CARD_HEIGHT + INTERIOR_BEVEL));		//3-(type%4) keeps track of the correct row
-                    if (counter == 13)										                    		//in which to print the card image
+                    if (counter == 13)										                    	//in which to print the card image
                     {
                         counter = 0;
                         type++;
