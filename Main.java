@@ -2,10 +2,15 @@
  * Spencer Ollila
  */
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import java.io.File;
+
 import java.util.ArrayList;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
