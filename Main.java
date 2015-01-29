@@ -18,14 +18,14 @@ public class Main
     public static final int CARD_WIDTH = 73;                    
     public static final int PANEL_HEIGHT = (2*PERIMETER_BEVEL) + (4*CARD_HEIGHT) + (3*INTERIOR_BEVEL);
     public static final int PANEL_WIDTH = (2*PERIMETER_BEVEL) + (14*CARD_WIDTH) + (13*INTERIOR_BEVEL);
-    public static final String   BACKGROUND_COLOR = "#76ee00";  //window background color [hex] chartreuse2
+    public static final String   BACKGROUND_COLOR = "#64C866";  //window background color [hex]
     public static final String   CARD_FOLDER = "cardImages";    //default folder containing images
     public static final String[] RANKS = {  "gray","gray","gray","gray","ace","two","three","four","five","six","seven",
                                             "eight","nine","ten","jack","queen","king"
                                          };                     //ranks in increasing order with 4 leading gray images
-    
-     
-    
+
+
+
     /**
      * randCardName takes the info based on the current state of the deck and returns the name of
      * the next unused card to lay out on the canvas
@@ -45,9 +45,9 @@ public class Main
     			// then pull out a gray one
     			checkedFile = cards[counter];
     	}
-    	else 
+    	else
     	{
-    		do 
+    		do
     	 	{
     	 		checkedFile = cards[(int) (Math.random() * (cards.length - 4)) + 4];
     	 		if (!used.contains(checkedFile)) break;
@@ -57,8 +57,50 @@ public class Main
     	used.add(name);
     	return name;
     }
-    
-    
+
+
+    /**
+     * orderedCardName takes the info based on the current state of the deck and returns the name of
+     * the next unused card to lay out on the canvas
+     * @param counter - the current spot in the cards
+     * @param type - the class of card
+     * @return the name of the next unused ordered card
+     */
+    public static String orderedCardName(int counter, int type)
+    {
+        String name = "";
+        if (counter == 0)
+        {
+            return "gray.gif";
+        }
+
+        String[] suit = new String[4];
+        suit[0] = "Spades";
+        suit[1] = "Hearts";
+        suit[2] = "Diamonds";
+        suit[3] = "Clubs";
+
+        String[] number = new String[14];
+        number[1] = "ace";
+        number[2] = "two";
+        number[3] = "three";
+        number[4] = "four";
+        number[5] = "five";
+        number[6] = "six";
+        number[7] = "seven";
+        number[8] = "eight";
+        number[9] = "nine";
+        number[10] = "ten";
+        number[11] = "jack";
+        number[12] = "queen";
+        number[13] = "king";
+
+        name = "cardImages/"+number[counter]+suit[type]+".gif";
+        System.out.println(name);
+        return name;
+    }
+
+
     
     /**
      * main method which prints out the deck of cards in rank order gray image
@@ -95,27 +137,30 @@ public class Main
                 }
                 // reset counter because we want to start placing them at 0, not 56
                 counter = 0;
+                int type = 0;
                 // for each card name in the array, pull one out (using randCardName)
                 // and print it to the screen.
-                while (counter < 56)
+                while (type < 4)
                 {
-                	new ImageIcon(randCardName(cards, counter, used)).paintIcon(this, g,
-                			PERIMETER_BEVEL + (counter/4) * (CARD_WIDTH + INTERIOR_BEVEL),			//counter/4 keeps track of the correct column
-                  			PERIMETER_BEVEL + (3-(counter%4)) *(CARD_HEIGHT + INTERIOR_BEVEL));		//3-(counter%4) keeps track of the correct row
-                	counter++;																		//in which to print the card image
+                	new ImageIcon(orderedCardName(counter, type)).paintIcon(this, g,
+                			PERIMETER_BEVEL + counter * (CARD_WIDTH + INTERIOR_BEVEL),			//counter/4 keeps track of the correct column
+                  			PERIMETER_BEVEL + (3-(type%4)) *(CARD_HEIGHT + INTERIOR_BEVEL));		//3-(type%4) keeps track of the correct row
+                    if (counter == 13)										                    		//in which to print the card image
+                    {
+                        counter = 0;
+                        type++;
+                    } else
+                    {
+                        counter++;
+                    }
                 } 																					
             }
         };
         panel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        panel.setBackground(Color.decode(BACKGROUND_COLOR));
+        window.setBackground(Color.decode(BACKGROUND_COLOR));
         window.add(panel);
         window.setVisible(true);    
         window.pack();
     }
 }
-
-/**
-* After trying to mess with mouseListener, MouseEvents, DragnDrop packages, and invisible JPanels,
-* I was still unable to get the click and drag functionality to work. So there's that.
-*/
