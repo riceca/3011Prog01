@@ -26,10 +26,7 @@ public class Main
     public static final int PANEL_HEIGHT = (2*PERIMETER_BEVEL) + (4*CARD_HEIGHT) + (3*INTERIOR_BEVEL);
     public static final int PANEL_WIDTH = (2*PERIMETER_BEVEL) + (14*CARD_WIDTH) + (13*INTERIOR_BEVEL);
     public static final String   BACKGROUND_COLOR = "#76ee00";  //window background color [hex] -SJO swapped to lime green
-    public static final String   CARD_FOLDER = "cardImages";    //default folder containing images
-    public static final String[] RANKS = {  "gray","gray","gray","gray","ace","two","three","four","five","six","seven",
-                                            "eight","nine","ten","jack","queen","king"
-                                         };                     //ranks in increasing order with 4 leading gray images
+                //ranks in increasing order with 4 leading gray images
 
 
     /** - SJO
@@ -87,28 +84,9 @@ public class Main
         JPanel panel = new JPanel() {
             public void paintComponent(Graphics g) {                     //find each rank of card in increasing
                 super.paintComponent(g);                                 //order as specified in the array. All
-                File[] files = new File(CARD_FOLDER).listFiles();        //ranks appear in the same suit order in
-                int counter = 0;                                         //the filesystem so suits will automatically
-                String[] cards;											 //be in order when printing in groups of four
-                ArrayList<String> used = new ArrayList<String>();		     //cards.
-                //Allocates memory for all cards
-                cards = new String[56];
-                for(String rank : RANKS) {                               
-                    for(File filename : files) {                         
-                        if(filename.getName().contains(rank)) {
-                        	// Add file name to an array of file names for the cards.
-                        	cards[counter] = (String) filename.getPath();
-                            //new ImageIcon(filename.getPath()).paintIcon(this, g,
-                            //    PERIMETER_BEVEL + (counter/4) * (CARD_WIDTH + INTERIOR_BEVEL),
-                            //    PERIMETER_BEVEL + (3-(counter%4)) * (CARD_HEIGHT + INTERIOR_BEVEL));
-                            counter++;
-                        	
-                        	
-                        }                                                
-                    }
-                }
+
                 // reset counter because we want to start placing them at 0, not 56
-                counter = 0;
+                int counter = 0;
                 int type = 0;
                 // for each card collection, pull one out
                 // and print it to the screen.
