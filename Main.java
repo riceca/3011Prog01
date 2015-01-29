@@ -98,7 +98,6 @@ public class Main
                         if(filename.getName().contains(rank)) {
                         	// Add file name to an array of file names for the cards.
                         	cards[counter] = (String) filename.getPath();
-                        	System.out.print(cards[counter] + "\n");
                             //new ImageIcon(filename.getPath()).paintIcon(this, g,
                             //    PERIMETER_BEVEL + (counter/4) * (CARD_WIDTH + INTERIOR_BEVEL),
                             //    PERIMETER_BEVEL + (3-(counter%4)) * (CARD_HEIGHT + INTERIOR_BEVEL));
